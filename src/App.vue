@@ -10,16 +10,23 @@
     content: btoa('<p>hello world</p>')
   })
 
+  const formNode = ref();
+
 </script>
 
 
 <template>
   <FormKit type="form"
+           ref="formNode"
            v-model="liveForm">
-    <FormKit :type="visualEditor"
-             name="content"
-             label="De content" />
   </FormKit>
+
+
+  <FormKit :type="visualEditor"
+           name="content"
+           label="De content"
+           v-if="formNode?.node"
+           :parent="formNode.node" />
   <pre>{{ liveForm }}</pre>
 </template>
 
