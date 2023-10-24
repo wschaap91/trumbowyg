@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/core": "^1.2.2",
+    "@formkit/themes": "^1.2.2",
+    "@formkit/vue": "^1.2.2",
     "trumbowyg": "^2.27.3",
     "vue": "^3.3.4"
   },

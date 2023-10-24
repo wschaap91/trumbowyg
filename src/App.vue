@@ -1,27 +1,26 @@
 <script setup lang="ts">
-  import { ref, computed } from 'vue';
-  import trumbowyg from './components/trumbowyg.vue';
 
-  // const testString = btoa('<b>This</b> is really awesome');
+  import { ref } from 'vue'
+  import { createInput } from '@formkit/vue'
+  import fkVisualEditor from './components/fkVisualEditor.vue';
 
-  const inputVal = ref(btoa('<b>This</b> is really awesome'));
+  const visualEditor = createInput(fkVisualEditor);
 
-  const computedString = computed(() => {
-    return atob(inputVal.value);
+  const liveForm = ref({
+    content: btoa('<p>hello world</p>')
   })
-
-  const updateInputVal = (val: string) => {
-    inputVal.value = btoa(val);
-  }
 
 </script>
 
 
 <template>
-  <trumbowyg :input="computedString"
-             @update:input="updateInputVal"
-             v-once />
-  <pre>{{ inputVal }}</pre>
+  <FormKit type="form"
+           v-model="liveForm">
+    <FormKit :type="visualEditor"
+             name="content"
+             label="De content" />
+  </FormKit>
+  <pre>{{ liveForm }}</pre>
 </template>
 
 <style scoped></style>
